@@ -19,14 +19,43 @@ def is_palindrome(text):
 
 def is_palindrome_iterative(text):
     # TODO: implement the is_palindrome function iteratively here
-    pass
+    left  = 0
+    right = len(text) - 1
+    text = text.lower()
+    char_match = True
+    while char_match and left < right:
+        while not text[left].isalnum():
+            left += 1
+        while not text[right].isalnum():
+            right -= 1
+        if text[left] == text[right]:
+            char_match = True
+            left += 1
+            right -= 1
+        else:
+            char_match = False
+            break
+    return char_match
+    
     # once implemented, change is_palindrome to call is_palindrome_iterative
     # to verify that your iterative implementation passes all tests
 
 
 def is_palindrome_recursive(text, left=None, right=None):
     # TODO: implement the is_palindrome function recursively here
-    pass
+    text = text.lower()
+    if left == None and right == None:
+        left, right = 0, len(text) - 1
+    if left >= right:
+        return True
+    else:
+        while not text[left].isalnum():
+            left += 1
+        while not text[right].isalnum():
+            right -= 1
+        if text[left] == text[right]:
+            return is_palindrome_recursive(text, left + 1, right - 1)
+    return False
     # once implemented, change is_palindrome to call is_palindrome_recursive
     # to verify that your iterative implementation passes all tests
 
